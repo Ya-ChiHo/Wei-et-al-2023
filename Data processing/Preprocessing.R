@@ -68,7 +68,17 @@ YW9[["percent.mt"]] <- PercentageFeatureSet(YW9, pattern = "^MT-")
 YW10[["percent.mt"]] <- PercentageFeatureSet(YW10, pattern = "^MT-")
 
 ####add to each objects a hashtag assay####
-hashtag_ID <- antibody_YW1[rownames(antibody_YW1) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_HD1 <- antibody_HD1[rownames(antibody_HD1) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW1 <- hashtag_YW1[rownames(hashtag_YW1) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW2 <- hashtag_YW2[rownames(hashtag_YW2) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW3 <- hashtag_YW3[rownames(hashtag_YW3) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW4 <- hashtag_YW4[rownames(hashtag_YW4) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW5 <- hashtag_YW5[rownames(hashtag_YW5) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW6 <- hashtag_YW6[rownames(hashtag_YW6) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW8 <- hashtag_YW8[rownames(hashtag_YW8) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW9 <- hashtag_YW9[rownames(hashtag_YW9) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+hashtag_YW10 <- hashtag_YW10[rownames(hashtag_YW10) %in% c("hashtag1_TotalA", "hashtag2_TotalA", "hashtag3_TotalA", "hashtag4_TotalA", "hashtag5_TotalA", "hashtag6_TotalA"),]
+
 HD1[["hashtag"]] <- CreateAssayObject(counts = hashtag_ID)
 YW1[["hashtag"]] <- CreateAssayObject(counts = hashtag_YW1)
 YW2[["hashtag"]] <- CreateAssayObject(counts = hashtag_YW2)
