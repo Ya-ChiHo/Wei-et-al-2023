@@ -18,6 +18,8 @@ library(stringr)
 
 #require "HIV_RNApos_cells.csv"
 #require "HIV_DNApos_cells.csv"
+#require "bc_ATAC_HIV.txt"
+#require "bc_RNA_HIV.txt"
 
 ####build Seurat objects(RNA + protein)####
 HD1 <- Read10X("~/HD1_MAH_cite/filtered_feature_bc_matrix")
