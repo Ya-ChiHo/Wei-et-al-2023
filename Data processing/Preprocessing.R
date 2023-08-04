@@ -15,6 +15,7 @@ library(JASPAR2022)
 library(harmony)
 library(clustree)
 library(stringr)
+library(future)
 
 #require "HIV_RNApos_cells.csv"
 #require "HIV_DNApos_cells.csv"
