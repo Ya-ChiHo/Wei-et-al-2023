@@ -287,6 +287,7 @@ Combined$HIV_DNA <- Combined.cite$HIV_DNA
 Combined$HIV_DNA_copies <- Combined.cite$HIV_DNA_copies 
 Combined$HIV_RNA <- Combined.cite$HIV_RNA  
 Combined$HIV_RNA_copies <- Combined.cite$HIV_RNA_copies 
+Combined$HIV_RNA_DNA <- Combined.cite$HIV_RNA_DNA  
 Combined$MULTI_classification <- Combined.cite$MULTI_classification
 
 
