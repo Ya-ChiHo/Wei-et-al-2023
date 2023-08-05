@@ -278,7 +278,7 @@ joint.bcs<- intersect(colnames(Combined.ATAC), colnames(Combined.cite))
 Idents(Combined.ATAC) <- colnames(Combined.ATAC)
 Combined <-subset(Combined.ATAC, idents = joint.bcs)
 
-Combined$Condition <- Combined.cite$Condition
+
 Combined$HIV_DNA_N1_10 <- Combined.cite$HIV_DNA_N1_10
 Combined$HIV_DNA_N1_10_copies <- Combined.cite$HIV_DNA_N1_10_copies 
 Combined$HIV_RNA <- Combined.cite$HIV_RNA  
