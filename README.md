@@ -1,7 +1,7 @@
 # Wei-et-al-2023
 R Scripts related to the Wei et al 2023 manuscript. 
 
-Please see STAR Methods in Wei et al 2023 manuscript for software and package versions
+Please see STAR Methods in Wei et al 2023 manuscript for software and package versions. E.g., in Seurat v5 some functions have been removed/replaced, and default parameters changed, vs Seurat v4.
 
 These scripts are minimally commented to be functional and reproducible, they are not tutorials. Please see the Methods section in the manuscript for additional details and non-R related analyses.
 
