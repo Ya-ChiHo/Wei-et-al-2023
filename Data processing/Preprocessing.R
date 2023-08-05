@@ -563,6 +563,3 @@ HIVposCells <- NormalizeData(HIVposCells, normalization.method = 'LogNormalize')
   FindClusters(resolution = 0.3) %>%
   identity()
 
-Idents(HIVposCells) <- "seurat_clusters"
-HIVposCells <- RenameIdents(HIVposCells, '0' = 'AP-1', '1' = 'MT', '3' = 'Cytotoxic', '2' = 'IRF')
-HIVposCells$seurat_clusters <- Idents(HIVposCells)
