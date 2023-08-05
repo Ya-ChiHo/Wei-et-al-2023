@@ -407,6 +407,8 @@ DimPlot(Combined, reduction = "umap.wnn", group.by = "orig.ident", label = FALSE
 
 ####manual annotation by marker gene expression (RNA)####
 DefaultAssay(Combined) <- "RNA"
+
+#refer to Table S2 "cluster annotation" in Wei et al. 2023, Immunity for celltypes associated with markers below
 CD4.RNA.markers <- c("percent.mt", "CCR7", "HLA-DRA", "HLA-DRB1","SELL",
                      "MKI67", 
                      "CTLA4", "PDCD1",
@@ -420,6 +422,8 @@ DotPlot(Combined, features = rev(CD4.RNA.markers), dot.scale = 20, cols = c("gre
 
 ####manual annotation by transcription factor gene accessibility (ATAC)####
 DefaultAssay(Combined) <- "activities"
+
+#refer to Table S2 "cluster annotation" in Wei et al. 2023, Immunity for celltypes associated with markers below
 CD4.ATAC.markers <- c("TBX21", "EMOMES", "GATA3", "RORC", "FOXP3")
 
 DotPlot(Combined, features = c(CD4.ATAC.markers), dot.scale =30, cols = c("grey","blue")) + scale_y_discrete(limits = rev)
@@ -428,6 +432,7 @@ DotPlot(Combined, features = c(CD4.ATAC.markers), dot.scale =30, cols = c("grey"
 ####manual annotation by surface protein markers + RNA + ATAC####
 DefaultAssay(Combined) <- "Antibody"
 
+#refer to Table S2 "cluster annotation" in Wei et al. 2023, Immunity for celltypes associated with markers below
 CD4.antibody.markers <- c(
   "CD45RA-TotalA", "CD45RO-TotalA", "CD197-TotalA", 
   "CD38-TotalA", "CD278-TotalA", "HLA-DR-TotalA", "CD279-TotalA",
