@@ -396,17 +396,14 @@ clustree(Combined, prefix = "wsnn_res.")
 
 Combined$seurat_clusters <- Combined$wsnn_res.0.6
 Idents(Combined) <- "seurat_clusters"
+table(Combined$seurat_clusters)
 #group clusters with <= 2 cells into nearest large clusters
-Combined <-RenameIdents(Combined, '3' = '8', '16' = '5', '17' = '0', '18' = '8', '19' = '2', '20' = '0', '21' = '8',
-                        '22' = '7', '23' = '8', '24' = '11', '25' = '0', '26' = '0', 
-                        '27' = '0', '28' = '8', '29' = '8') 
-Combined$seurat_clusters <- Idents(Combined)
+#e.g., Combined <-RenameIdents(Combined, '33' = '0') if cluster 33 has 2 cells and nearest large cluster is 0
 
 DimPlot(Combined, reduction = "umap.rna", group.by = "orig.ident", label = FALSE, raster = FALSE) + ggtitle("RNA UMAP res 0.6") 
 DimPlot(Combined, reduction = "umap.antibody", group.by = "orig.ident", label = FALSE, raster = FALSE) + ggtitle("Antibody UMAP res 0.6") 
 DimPlot(Combined, reduction = "umap.atac", group.by = "orig.ident", label = FALSE, raster = FALSE) + ggtitle("Antibody UMAP res 0.6") 
 DimPlot(Combined, reduction = "umap.wnn", group.by = "orig.ident", label = FALSE, raster = FALSE) + ggtitle("WNN UMAP res 0.6")
-
 
 ####manual annotation by marker gene expression (RNA)####
 DefaultAssay(Combined) <- "RNA"
@@ -417,6 +414,10 @@ CD4.RNA.markers <- c("percent.mt", "CCR7", "HLA-DRA", "HLA-DRB1","SELL",
                      "CCR6", "ITGAE", 
                      "GATA3",
                      "TBX21","CCL5","GNLY", "GZMK", "GZMB", "GZMH")
+
+DotPlot(Combined, features = rev(CD4.RNA.markers), dot.scale = 20, cols = c("grey","blue")) + scale_y_discrete(limits = rev)
+#rename cluster to celltypes in new metadata column "WNNcelltype_RNA" by high RNA expression of marker genes above
+
 
 Combined$WNNcelltype_RNA <- Combined$seurat_clusters
 Idents(Combined) <- "WNNcelltype_RNA"
