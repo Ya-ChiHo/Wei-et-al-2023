@@ -366,6 +366,8 @@ Combined <- FindClusters(Combined, algorithm = 3, resolution = 0.5)
 
 ####RNA integration (batch effect correction) and normalization and UMAP generation####
 DefaultAssay(Combined) <- "RNA"
+#if using Seurat v5: Combined <- JoinLayers(Combined)
+
 #correct batch effects across 10X runs
 Idents(Combined) <- "orig.ident"
 Combined <- NormalizeData(Combined, normalization.method = 'LogNormalize') %>%
