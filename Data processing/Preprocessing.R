@@ -339,7 +339,7 @@ Combined.ATAC.integrated <- ScaleData(Combined.ATAC.integrated)
 DefaultAssay(Combined) <- "Antibody"
 rownames(Combined)
 #remove hashtag and isotype antibodies from list of antibodies to make list of variable features
-antibody_features <- rownames(Combined[-c(31,32,33,34,85,86,87,88,89,166,167,168,169,170,171,172,173,174)])
+antibody_features <- rownames(Combined)[-c(31,32,33,34,85,86,87,88,89,166,167,168,169,170,171,172,173,174)]
 
 DefaultAssay(Combined) <- "Antibody"
 Idents(Combined) <- "orig.ident"
