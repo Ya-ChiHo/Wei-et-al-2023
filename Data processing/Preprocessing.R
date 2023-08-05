@@ -278,9 +278,7 @@ joint.bcs<- intersect(colnames(Combined.ATAC), colnames(Combined.cite))
 Idents(Combined.ATAC) <- colnames(Combined.ATAC)
 Combined <-subset(Combined.ATAC, idents = joint.bcs)
 
-Combined$celltype_RNA <- Combined.cite$celltype_RNA
-Combined$celltype_RNAcite <- Combined.cite$celltype_RNAcite
-Combined$Sample <- Combined.cite$Sample
+Combined$Condition <- Combined.cite$Condition
 Combined$HIV_DNA_N1_10 <- Combined.cite$HIV_DNA_N1_10
 Combined$HIV_DNA_N1_10_copies <- Combined.cite$HIV_DNA_N1_10_copies 
 Combined$HIV_RNA <- Combined.cite$HIV_RNA  
