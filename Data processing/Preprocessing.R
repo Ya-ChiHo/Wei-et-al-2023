@@ -289,6 +289,7 @@ Combined$HIV_RNA <- Combined.cite$HIV_RNA
 Combined$HIV_RNA_copies <- Combined.cite$HIV_RNA_copies 
 Combined$HIV_RNA_DNA <- Combined.cite$HIV_RNA_DNA  
 Combined$MULTI_classification <- Combined.cite$MULTI_classification
+Combined$MULTI_ID <- Combined.cite$MULTI_ID
 
 
 ####ATAC integration (batch effect correction) and normalization and UMAP generation####
