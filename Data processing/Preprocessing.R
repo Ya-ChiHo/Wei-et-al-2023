@@ -556,7 +556,7 @@ HIVposCells <- ScaleData(HIVposCells)
 #####RNA integration (batch effect correction) and normalization and UMAP generation for HIVposCells####
 HIVposCells <- NormalizeData(HIVposCells, normalization.method = 'LogNormalize') %>%
   FindVariableFeatures(selection.method = "vst", nfeatures = 2000) %>%
-  ScaleData() %>% RunPCA(npcs = 6) %>% RunHarmony("MULTI_ID", plot_convergence = TRUE) %>%
+  ScaleData() %>% RunPCA(npcs = 6) %>% RunHarmony("MULTI_classification", plot_convergence = TRUE) %>%
   RunUMAP(reduction = "harmony", reduction.name = "umap.rna", reduction.key = "rnaUMAP_", dims = 1:6, assay = 'RNA') %>%
   FindNeighbors(reduction = "harmony", dims = 1:6) %>%
   FindClusters(resolution = 0.3) %>%
