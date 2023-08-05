@@ -277,10 +277,13 @@ all.equal(colnames(Combined.ATAC), colnames(Combined.cite))
 joint.bcs<- intersect(colnames(Combined.ATAC), colnames(Combined.cite))
 Idents(Combined.ATAC) <- colnames(Combined.ATAC)
 Combined <-subset(Combined.ATAC, idents = joint.bcs)
+Combined.cite <- subset(Combined.cite, idents = joint.bcs)
 
+Combined[["RNA"]] <- Combined.cite[["RNA"]] 
+Combined[["Antibody"]] <- Combined.cite[["Antibody"]] 
 
-Combined$HIV_DNA_N1_10 <- Combined.cite$HIV_DNA_N1_10
-Combined$HIV_DNA_N1_10_copies <- Combined.cite$HIV_DNA_N1_10_copies 
+Combined$HIV_DNA <- Combined.cite$HIV_DNA
+Combined$HIV_DNA_copies <- Combined.cite$HIV_DNA_copies 
 Combined$HIV_RNA <- Combined.cite$HIV_RNA  
 Combined$HIV_RNA_copies <- Combined.cite$HIV_RNA_copies 
 Combined$MULTI_classification <- Combined.cite$MULTI_classification
