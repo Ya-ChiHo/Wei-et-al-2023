@@ -416,30 +416,14 @@ CD4.RNA.markers <- c("percent.mt", "CCR7", "HLA-DRA", "HLA-DRB1","SELL",
                      "TBX21","CCL5","GNLY", "GZMK", "GZMB", "GZMH")
 
 DotPlot(Combined, features = rev(CD4.RNA.markers), dot.scale = 20, cols = c("grey","blue")) + scale_y_discrete(limits = rev)
-#rename cluster to celltypes in new metadata column "WNNcelltype_RNA" by high RNA expression of marker genes above
-
-
-Combined$WNNcelltype_RNA <- Combined$seurat_clusters
-Idents(Combined) <- "WNNcelltype_RNA"
-Combined <-RenameIdents(Combined, '0' = 'Th17', '1' = 'Memory', '2' = 'Memory', 
-                        '4' = 'Memory', '5' = 'Memory', '6' = 'Th2', '7' = 'GZMB/H Th1', 
-                        '8' = "Memory", '9' = 'Treg', '10' = 'Proliferating',
-                        '11' = 'GZMK Th1', '12' = 'Memory', '13' = 'Migratory', 
-                        '14' = 'TEMRA', '15' = 'MT') 
-Combined$WNNcelltype_RNA <- Idents(Combined)
+#rename/merge cluster to celltypes in new metadata column "WNNcelltype_RNA" by high RNA expression of marker genes above, refer to Supplemental Figure S1E, S1H in Wei et al. 2023, Immunity. 
 
 ####manual annotation by transcription factor gene accessibility (ATAC)####
 DefaultAssay(Combined) <- "activities"
 CD4.ATAC.markers <- c("TBX21", "EMOMES", "GATA3", "RORC", "FOXP3")
 
-Combined$WNNcelltype_ATAC <- Combined$seurat_clusters
-Idents(Combined) <- "WNNcelltype_ATAC"
-Combined <-RenameIdents(Combined, '0' = 'Th17', '1' = 'Memory', '2' = 'Memory', 
-                        '4' = 'Memory', '5' = 'Memory', '6' = 'Th2', '7' = 'Th1', 
-                        '8' = "Memory", '9' = 'Treg', '10' = 'Proliferating',
-                        '11' = 'Th1', '12' = 'Memory', '13' = 'Memory', 
-                        '14' = 'Memory', '15' = 'Memory') 
-Combined$WNNcelltype_ATAC <- Idents(Combined)
+DotPlot(Combined, features = c(CD4.ATAC.markers), dot.scale =30, cols = c("grey","blue")) + scale_y_discrete(limits = rev)
+#rename/merge cluster to celltypes in new metadata column "WNNcelltype_ATAC" by high RNA expression of marker genes above, refer to Supplemental Figure S1D, S1G in Wei et al. 2023, Immunity. 
 
 ####manual annotation by surface protein markers + RNA + ATAC####
 DefaultAssay(Combined) <- "Antibody"
@@ -452,12 +436,9 @@ CD4.antibody.markers <- c(
   "KLRG1-TotalA", "GPR56-TotalA", "CD25-TotalA",
   "CD49d-TotalA", "ITGB7-TotalA", "CD103-TotalA")
 
-Combined$WNNcelltype <- Combined$seurat_clusters
-Combined <-RenameIdents(Combined, '0' = 'Th17', '1' = 'Memory c1', '2' = 'Memory c2',
-                        '4' = 'CXCR5 memory 2', '5' = 'TCM', '6' = 'Th2', '7' = 'GZMB/H Th1',
-                        '8' = 'CXCR5 memory 1', '9' = 'Treg', '10' = 'Proliferating',
-                        '11' = 'GZMK Th1', '12' = 'Exhausted', '13' = 'Migratory', '14' = 'TEMRA', '15' = 'MT')
-Combined$WNNcelltype <- Idents(Combined)
+DotPlot(Combined, features = c(CD4.antibody.markers), dot.scale = 18, cols = c("grey","blue")) + scale_y_discrete(limits = rev)
+#expand cluster naming in "WNNcelltype_RNA" to include additional celltypes identifed by high protein expression of marker genes, in new metadata column "WNNcelltype", refer to Figure 1A, S1I in Wei et al. 2023, Immunity. 
+
 ####subset Seurat Object by conditions (viremic, suppressed, uninfected) and re-scale subset####
 Combined$Condition <- Combined$orig.ident
 
