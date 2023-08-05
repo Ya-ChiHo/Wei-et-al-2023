@@ -5,7 +5,7 @@ Please see STAR Methods in Wei et al 2023 manuscript for software and package ve
 
 These scripts are minimally commented to be functional and reproducible, they are not tutorials. Please see the Methods section in the manuscript for additional details and non-R related analyses.
 
-Scripts in 'Data processing' describe steps taken to generate R objects and contain functions that are required for various analyses as well as the output plots for main figures that appear in the manuscript.
+Scripts in 'Data processing' describe steps taken to generate R objects, functions and processes that are required for various downstream analyses that appear in the manuscript.
 
 Contents of 'Data processing':
 Preprocessing.R: Building Seurat objects, doublet removal, low quality cell filter, determining HIV-1-infected cells in filtered bc matrices, RNA/ATAC/protein data normalization and batch effect removal, celltype annotation, creating intermediate objedcts for downstream analyses.
