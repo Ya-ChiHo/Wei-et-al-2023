@@ -354,13 +354,13 @@ Combine.list <- lapply(X = Combine.list, FUN = function(x){
 immune.anchors <- FindIntegrationAnchors(object.list = Combine.list,
                                          anchor.features = antibody_features,
                                          reduction = "rpca", k.anchor = 20)
-Combined <- IntegrateData(anchorset = immune.anchors, new.assay.name = "antibody_integrated")
+Combined <- IntegrateData(anchorset = immune.anchors, new.assay.name = "antibodyintegrated")
 
-DefaultAssay(Combined) <- "antibody_integrated"
+DefaultAssay(Combined) <- "antibodyintegrated"
 Combined <- ScaleData(Combined, verbose = FALSE)
-Combined <- RunPCA(Combined, npcs = 15, verbose = FALSE, reduction.name = 'apca', assay = 'antibody_integrated')
+Combined <- RunPCA(Combined, npcs = 15, verbose = FALSE, reduction.name = 'apca', assay = 'antibodyintegrated')
 Combined <- RunUMAP(Combined, reduction = "apca", reduction.name = "umap.antibody", 
-                    reduction.key = "antibodyUMAP_", dims = 1:15, assay = 'antibody_integrated')
+                    reduction.key = "antibodyUMAP_", dims = 1:15, assay = 'antibodyintegrated')
 Combined <- FindNeighbors(Combined, reduction = "apca", dims = 1:15)
 Combined <- FindClusters(Combined, algorithm = 3, resolution = 0.5)
 
