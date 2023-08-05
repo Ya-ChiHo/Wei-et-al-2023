@@ -277,6 +277,7 @@ all.equal(colnames(Combined.ATAC), colnames(Combined.cite))
 joint.bcs<- intersect(colnames(Combined.ATAC), colnames(Combined.cite))
 Idents(Combined.ATAC) <- colnames(Combined.ATAC)
 Combined <-subset(Combined.ATAC, idents = joint.bcs)
+Idents(Combined.cite) <- colnames(Combined.cite)
 Combined.cite <- subset(Combined.cite, idents = joint.bcs)
 
 Combined[["RNA"]] <- Combined.cite[["RNA"]] 
