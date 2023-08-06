@@ -502,8 +502,14 @@ Suppressed_HIV_RNA_pos <- subset(Suppressed, idents = c("positive_negative", "po
 Suppressed_HIV_DNA_pos <- subset(Suppressed, idents = c("negative_positive"))
 Suppressed_HIV_neg <- subset(Suppressed, idents = c("negative_negative"))
 
-Idents(Combined) <- "HIV_RNA_DNA"
-HIVposCells <- subset(Combined, idents = c("positive_positive", "negative_positive", "positive_negative"))
+Combined$HIV_RNA_DNA2 <- Combined$HIV_RNA_DNA
+Idents(Combined) <- "HIV_RNA_DNA2"
+Combined <-RenameIdents(Combined, 'positive_positive' = 'HIV RNA and double positive', 
+                            'positive_negative' = 'HIV RNA and double positive', 'negative_positive' = 'HIV DNA positive',
+                            'negative_negative' = 'HIV negative') 
+Combined$HIV_RNA_DNA2 <- Idents(Combined)
+
+HIVposCells <- subset(Combined, idents = c("HIV RNA and double positive", "HIV DNA positive"))
 
 DefaultAssay(Viremic_HIV_RNA_DNA_pos) <- "ATAC"; DefaultAssay(Viremic_HIV_DNA_pos) <- "ATAC"; DefaultAssay(Viremic_HIV_RNA_pos) <- "ATAC"; DefaultAssay(Viremic_HIV_neg) <- "ATAC"
 DefaultAssay(Suppressed_HIV_RNA_DNA_pos) <- "ATAC"; DefaultAssay(Suppressed_HIV_DNA_pos) <- "ATAC"; DefaultAssay(Suppressed_HIV_RNA_pos) <- "ATAC"; DefaultAssay(Suppressed_HIV_neg) <- "ATAC"
@@ -553,8 +559,9 @@ Suppressed_HIV_RNA_DNA_pos <- ScaleData(Suppressed_HIV_RNA_DNA_pos); Suppressed_
 DefaultAssay(HIVposCells) <- "RNA"
 HIVposCells <- ScaleData(HIVposCells)
 
-
 #####RNA integration (batch effect correction) and normalization and UMAP generation for HIVposCells####
+DefaultAssay(HIVposCells) <- "RNA"
+
 HIVposCells <- NormalizeData(HIVposCells, normalization.method = 'LogNormalize') %>%
   FindVariableFeatures(selection.method = "vst", nfeatures = 2000) %>%
   ScaleData() %>% RunPCA(npcs = 6) %>% RunHarmony("MULTI_classification", plot_convergence = TRUE) %>%
