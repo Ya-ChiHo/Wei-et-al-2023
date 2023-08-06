@@ -47,7 +47,7 @@ DimPlot(HIVposCells, reduction = "umap.rna", group.by = "Participants", raster =
 
 #Fig. 6D
 Idents(HIVposCells) <- "seurat_clusters"; DefaultAssay(HIVposCells) <- "RNA"
-heatmap.HIVposCells.markers <- FindAllMarkers(HIVposCells, test.use = "wilcox", only.pos = TRUE, min.pct = 0.15, logfc.threshold = 0.25)
+heatmap.HIVposCells.markers <- FindAllMarkers(HIVposCells, test.use = "wilcox", only.pos = TRUE, min.pct = 0.15, logfc.threshold = 0.25, pseudocount.use = 1)
 heatmap.HIVposCells.markers$BH <- p.adjust(heatmap.HIVposCells.markers$p_val, 
                                           method = "BH", n = nrow(heatmap.HIVposCells.markers))
 
@@ -58,13 +58,13 @@ heatmap.HIVposCells.markers %>%
 DoHeatmap(HIVposCells, features = heatmap.HIVposCells.markers$gene, label = TRUE, raster = FALSE) + NoLegend()
 
 #Fig. 6E
-DefaultAssay(HIVposCells.ATAC) <- 'chromvar'; Idents(HIVpos) <- "seurat_clusters"
+DefaultAssay(HIVposCells.ATAC) <- 'chromvar'; Idents(HIVposCells.ATAC) <- "seurat_clusters"
 motif.names <- HIVposCells.ATAC@assays$ATAC@motifs@motif.names
 HIVposCells.ATAC@assays$chromvar@counts <- HIVposCells.ATAC@assays$chromvar@data
 
 heatmap.HIVpos.Chromvar.markers <- FindAllMarkers(HIVposCells.ATAC,  
                                                   only.pos = TRUE, min.pct = 0,
-                                                  logfc.threshold = 0.3, mean.fxn = rowMeans, fc.name = "avg_diff")
+                                                  logfc.threshold = 0.3, mean.fxn = rowMeans, fc.name = "avg_diff", pseudocount.use = 1)
 heatmap.HIVpos.Chromvar.markers$BH <- p.adjust(heatmap.HIVpos.Chromvar.markers$p_val, 
                                                method = "BH", n = nrow(heatmap.HIVpos.Chromvar.markers))
 heatmap.HIVpos.Chromvar.markers$gene <- ConvertMotifID(motif.names, id = rownames(heatmap.HIVpos.Chromvar.markers))
@@ -98,9 +98,10 @@ Antibody_stats_HIVpos <- Antibody_stats_HIVpos[Antibody_stats_HIVpos$X2.sample.z
 rownames(Antibody_stats_HIVpos) <- Antibody_stats_HIVpos$names
 #see Antibody_stats_HIVpos.csv
 
+DefaultAssay(HIVposCells) <- "CITE_dsb"; Idents(HIVposCells) <- "seurat_clusters"
 heatmap.HIVposCells.Antibody.markers  <- FindAllMarkers(object = HIVposCells, min.pct = 0.15, 
                                                    only.pos = TRUE, test.use = 'wilcox', features =rownames(Antibody_stats_HIVpos))
-heatmap.HIVposCells.Antibody.markers$BH <- p.adjust(heatmap.HIVposCells.Antibody.markers$p_val, method = "BH", n = nrow(heatmap.HIVposCells.Antibody.markers))
+heatmap.HIVposCells.Antibody.markers$BH <- p.adjust(heatmap.HIVposCells.Antibody.markers$p_val, method = "BH", n = nrow(heatmap.HIVposCells.Antibody.markers), pseudocount.use = 1)
 heatmap.HIVposCells.Antibody.markers <- heatmap.HIVposCells.Antibody.markers[!duplicated(heatmap.HIVposCells.Antibody.markers$gene),]
 
 avg_exp.HIVposCells <- AverageExpression(HIVposCells, return.seurat = T, group.by = 'seurat_clusters')
