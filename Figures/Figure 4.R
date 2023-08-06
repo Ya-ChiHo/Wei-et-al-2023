@@ -208,14 +208,14 @@ ggplot(GO_table.module_RNApos_proliferation, aes(y = Term, x = value)) + geom_ba
 #Fig. 4I and Fig. 4J
 DefaultAssay(Viremic) <- "RNA"; Idents(Viremic) <- "HIV_RNA_DNA2"
 
-Rank_viremic_HIV_RNApos <- FindMarkers(Viremic, ident.1 = "RNA and double positive", only.pos = FALSE, logfc.threshold = 0, min.pct = 0)
+Rank_viremic_HIV_RNApos <- FindMarkers(Viremic, ident.1 = "RNA and double positive", only.pos = FALSE, logfc.threshold = 0, min.pct = 0, pseudocount.use = 1)
 GSEA.DEG.allmarkers.Viremic.HIV_RNApos_vs_HIVneg <- Rank_viremic_HIV_RNApos$avg_log2FC
 names(GSEA.DEG.allmarkers.Viremic.HIV_RNApos_vs_HIVneg) <- rownames(Rank_viremic_HIV_RNApos)
 fgsea_GSEA.DEG.allmarkers.Viremic.HIV_RNApos_vs_HIVneg <- fgsea(pathways = fgsea_sets, 
                                                                 stats = GSEA.DEG.allmarkers.Viremic.HIV_RNApos_vs_HIVneg,
                                                                 eps   = 0.0, minSize=10, maxSize=500, scoreType = "pos")
 
-Rank_viremic_HIV_DNApos <- FindMarkers(Viremic, ident.1 = "DNA positive", only.pos = FALSE, logfc.threshold = 0, min.pct = 0)
+Rank_viremic_HIV_DNApos <- FindMarkers(Viremic, ident.1 = "DNA positive", only.pos = FALSE, logfc.threshold = 0, min.pct = 0, pseudocount.use = 1)
 GSEA.DEG.allmarkers.Viremic.HIV_DNApos_vs_HIVneg <- Rank_viremic_HIV_DNApos$avg_log2FC
 names(GSEA.DEG.allmarkers.Viremic.HIV_DNApos_vs_HIVneg) <- rownames(Rank_viremic_HIV_DNApos)
 fgsea_GSEA.DEG.allmarkers.Viremic.HIV_DNApos_vs_HIVneg <- fgsea(pathways = fgsea_sets, 
@@ -223,7 +223,7 @@ fgsea_GSEA.DEG.allmarkers.Viremic.HIV_DNApos_vs_HIVneg <- fgsea(pathways = fgsea
                                                                 eps   = 0.0, minSize=10, maxSize=500, scoreType = "pos")
 
 
-Rank_viremic_HIV_neg <- FindMarkers(Viremic, ident.1 = "negative", only.pos = FALSE, logfc.threshold = 0, min.pct = 0)
+Rank_viremic_HIV_neg <- FindMarkers(Viremic, ident.1 = "negative", only.pos = FALSE, logfc.threshold = 0, min.pct = 0, pseudocount.use = 1)
 GSEA.DEG.allmarkers.Viremic.HIVneg_vs_HIVpos <- Rank_viremic_HIV_neg$avg_log2FC
 names(GSEA.DEG.allmarkers.Viremic.HIVneg_vs_HIVpos) <- rownames(Rank_viremic_HIV_neg)
 fgsea_GSEA.DEG.allmarkers.Viremic.HIVneg_vs_HIVpos <- fgsea(pathways = fgsea_sets, 
